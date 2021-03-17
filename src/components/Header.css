@@ -1,0 +1,51 @@
+.page-header{
+    /* background-image: url("/w3images/photographer.jpg"); */
+    background-color: #646464;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top 20% left 0px;
+    color: white;
+    height: 16%;
+    padding-left: 10%;
+    padding-right: 10%;
+    position: relative;
+}
+
+.page-header .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 50%;
+}
+
+.page-header .text-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+.playlist-name-row{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.playlist-name-row * {
+    margin-bottom: 0;
+}
+
+.playlist-desc-row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.playlist-desc-row *{
+    margin-top: 8px;
+}

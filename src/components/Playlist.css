@@ -1,0 +1,20 @@
+.playlist{
+    width: 16%;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 2%;
+}
+
+.playlist h2{
+    margin-bottom: 0;
+}
+
+.playlist h3{
+    color: #646464;
+    margin-top: 10px;
+}
+
+.playlist img{
+    width: 100%;
+    border-radius: 10px;
+}

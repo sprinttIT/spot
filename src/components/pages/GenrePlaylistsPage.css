@@ -1,0 +1,15 @@
+.genre-page{
+    overflow-y: scroll;
+}
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 30px;
+    margin: 80px;
+}
+
+.playlist-grid .playlist{
+    width: 100%;
+}
+

@@ -1,0 +1,31 @@
+.volume-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.volume-bar-back-stripe{
+    width: 110px;
+    height: 4px;
+    margin-right: 10px;
+    margin-left: 10px; 
+    border-radius: 20px;
+    background-color: #ccc;
+    position: relative;
+    cursor: pointer;
+}
+
+.volume-stripe{
+    background-color: #383838;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    transition: width 0.1s linear;
+}
+
+.volume-icon{
+    width: 18px;
+    height: 18px;
+}

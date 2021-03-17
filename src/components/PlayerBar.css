@@ -1,0 +1,32 @@
+.player-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.player-bar h3{
+    margin: 0;
+}
+
+
+.bar-stripe{
+    width: 700px;
+    height: 4px;
+    margin-right: 10px;
+    margin-left: 10px; 
+    border-radius: 20px;
+    background-color: #ccc;
+    position: relative;
+    /* cursor: pointer; */
+}
+
+.passed-time-stripe{
+    background-color: #383838;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    transition: width 0.3s linear;
+}

@@ -1,0 +1,15 @@
+.page.home-page{
+    position: relative;
+    overflow-y: scroll;
+}
+
+.home-page-content {
+    position: absolute;
+    top: 12%;
+    left: 12%;
+    width: 76%;
+}
+
+.home-page .list-of-playlists{
+
+}

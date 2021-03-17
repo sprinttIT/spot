@@ -1,0 +1,50 @@
+.song-list-table td:first-child, .song-list-table th:first-child{
+    width: 60px;
+    border-bottom: 0px solid #ccc;
+}
+
+.song-list-table tr:hover{
+    background-color: #ddf5e5;
+    border-radius: 30px;
+}
+
+.play-pause-button img{
+    width: 28px;
+    height: 28px;
+    margin-left: 10px;
+}
+
+.song-list-table .play-pause-button button{
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.song-list-table tr:hover button{
+    visibility: visible;
+}
+
+.song-list-table td{
+    border-bottom: 1px solid #ccc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.song-list-table th {
+    color: #646464;
+    font-weight: 300;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 9px;
+    text-align: left;
+}
+
+.song-list-table{
+    width: 100%;
+}
+
+.like-button img{
+    width: 22px;
+    margin-right: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,49 @@
+html{
+  font-size: 100%;
+}
+
+button{
+  border: none;
+  background: none;
+}
+
+button:focus {
+  outline:0;
+}
+
+h1{
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+h2, span.small{
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+h3{
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 1600px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+
+
+body {
+  margin: 0;
+  font-family: 'Rubik' ,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F1F7F1;
+  overflow-y: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

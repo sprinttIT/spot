@@ -1,0 +1,30 @@
+.genre{
+    width: 13vw;
+    height: 13vw;
+    position: relative;
+    cursor: pointer;
+}
+
+.genre > *{
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.text-layer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-layer{
+    background-color: black;
+    opacity: 40%;
+}
+
+.text-layer h1{
+    color: white;
+}

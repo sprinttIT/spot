@@ -1,0 +1,19 @@
+.browse-page{
+    padding-right: 12%;
+    padding-left: 12%;
+    padding-top: 100px;
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+.padding{
+    height: 100px;
+}
+
+.genres{
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+    grid-template-columns: auto auto auto auto;
+
+}

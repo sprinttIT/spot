@@ -1,0 +1,38 @@
+
+.list-of-playlists-title-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-of-playlists-arrows *{
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+.list-of-playlists h1{
+    margin-bottom: 46px;
+}
+
+.playlists-container{
+    width: 100%;
+    overflow: hidden;
+}
+
+.playlists-wrapper{
+    width: 200%;
+    display: flex;
+    position: relative;
+    left: 0;
+    transition: all 1s ease;
+}
+
+.playlists-wrapper.page2{
+    left: -100%;
+}
+
+.playlists-sub-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

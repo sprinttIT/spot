@@ -1,0 +1,8 @@
+
+.song-list-page-content{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top:40px;
+    height: 70%;
+    overflow-y: scroll;
+}
