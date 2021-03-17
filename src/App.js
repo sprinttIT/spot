@@ -22,9 +22,9 @@ function App() {
     headers: {'user-access-token': '4d173c59-f266-4748-b57e-783b6413b6c7'}
   };
 
-  
   const baseUrl = "https://sprintt-lb-215939582.us-east-2.elb.amazonaws.com/spotify"
-  //const baseUrl = "http://api.sprintt.co/spotify"
+  const replaceUrl = "http://api.sprintt.co/spotify"
+  // const baseUrl = "http://api.sprintt.co/spotify"
   // const baseUrl = "http://localhost:5000/spotify"
   const [selectedNavItem, setSelectedNavItem] = useState("home")
   const [currentPage, setCurrentPage] = useState("home")
@@ -189,7 +189,7 @@ function App() {
         {
           "id": category.category_id,
           "title": category.category_name,
-          "imgSrc": category.image_url
+          "imgSrc": category.image_url.replace(replaceUrl,baseUrl)
         }
       ))
       setGenres(formattedResponse)
@@ -256,7 +256,7 @@ function App() {
     return {
       "id": playlist.playlist_id,
       "name": playlist.name,
-      "imgSrc": playlist.image_url,
+      "imgSrc": playlist.image_url.replace(replaceUrl,baseUrl),
       "description": playlist.description
     }
   }
