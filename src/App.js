@@ -23,7 +23,7 @@ function App() {
   };
   
   // const baseUrl = "http://3.140.142.196/spotify"
-  const baseUrl = "http://api.sprintt.co/spotify"
+  const baseUrl = "https://api.sprintt.co/spotify"
   // const baseUrl = "https://localhost:5000/spotify"
   const [selectedNavItem, setSelectedNavItem] = useState("home")
   const [currentPage, setCurrentPage] = useState("home")
