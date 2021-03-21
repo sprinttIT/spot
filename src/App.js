@@ -14,18 +14,17 @@ import Song from './components/Song';
 import GenrePlaylistsPage from './components/pages/GenrePlaylistsPage';
 
 
-
+let TOKEN = '4d173c59-f266-4748-b57e-783b6413b6c7'
 
 function App() {
 
   const axiosOptions = {
-    headers: {'user-access-token': '4d173c59-f266-4748-b57e-783b6413b6c7'}
+    headers: {'user-access-token': TOKEN}
   };
-
-  const baseUrl = "https://sprintt-lb-215939582.us-east-2.elb.amazonaws.com/spotify"
-  const replaceUrl = "http://api.sprintt.co/spotify"
-  // const baseUrl = "http://api.sprintt.co/spotify"
-  // const baseUrl = "http://localhost:5000/spotify"
+  
+  // const baseUrl = "http://3.140.142.196/spotify"
+  const baseUrl = "http://api.sprintt.co/spotify"
+  // const baseUrl = "https://localhost:5000/spotify"
   const [selectedNavItem, setSelectedNavItem] = useState("home")
   const [currentPage, setCurrentPage] = useState("home")
   const [featuredPlaylists, setFeaturedPlaylists] = useState([])
@@ -38,9 +37,12 @@ function App() {
   const [selectedPlaylist, setSelectedPlaylist] = useState(undefined)
   const [selectedPlaylistDuration, setSelectedPlaylistDuration] = useState("")
   const [currentlyPlayingDetails, setCurrentlyPlayingDetails] = useState({
+    "songId": "",
     "song": "",
     "artist": "",
     "playlistImageSrc": "",
+    "playlist": undefined,
+    "playlistSongs": []
   })
   const [likedSongs, setLikedSongs] = useState([])
   
@@ -49,6 +51,7 @@ function App() {
 
   const [audioUrl, setAudioUrl] = useState("");
   const [isPlaying,setIsPlaying] = useState(false)
+  const [encryptedToken,setEncryptedToken] = useState("")
   const [songSecondsPassed, setSongSecondsPassed] = useState(0)
   const [songTotalSeconds, setSongTotalSeconds] = useState(105)
 
@@ -77,14 +80,17 @@ function App() {
     setVolume(volumeLevel)
   }
 
-  const onSongPlay = (playlist, song) => {
+  const onSongPlay = (playlist, song, playlistSongs) => {
     setCurrentlyPlayingDetails({
+      "songId": song.id,
       "song": song.title,
       "artist": song.artist,
       "playlistImageSrc": playlist.imgSrc,
       "totalTime": "0:00",
       "timePassed": "0:00",
-      "percentage": 0
+      "percentage": 0,
+      "playlist": playlist,
+      "playlistSongs": playlistSongs
     })
     if(currentlyPlayingDetails.song != song.title){
       setPlayingSong(playlist,song)
@@ -110,6 +116,7 @@ function App() {
   }
 
   const setPlayingSong = (playlist,song) => {
+    setEncryptedToken(getEncryptedToken(TOKEN))
     setSongSecondsPassed(0)
     const url = `${baseUrl}/play/${song.id}`
     setAudioUrl(url)
@@ -134,6 +141,23 @@ function App() {
       console.log(error);
     })  
 
+  }
+
+  const moveSong = (direction) => {
+    let i;
+    for (i = 0; i < songList.length; i++) {
+      if(songList[i].id === currentlyPlayingDetails.songId){
+        if(direction == "next"){
+          if(i+1 < songList.length){
+            let song = songList.filter((song) => song.id === currentlyPlayingDetails.songId)
+            onSongPlay(currentlyPlayingDetails.playlist, song)
+          }
+      
+        }else{
+    
+        }
+      }
+    }
   }
 
   const formatTrack = (track) => {
@@ -189,7 +213,7 @@ function App() {
         {
           "id": category.category_id,
           "title": category.category_name,
-          "imgSrc": category.image_url.replace(replaceUrl,baseUrl)
+          "imgSrc": category.image_url
         }
       ))
       setGenres(formattedResponse)
@@ -256,7 +280,7 @@ function App() {
     return {
       "id": playlist.playlist_id,
       "name": playlist.name,
-      "imgSrc": playlist.image_url.replace(replaceUrl,baseUrl),
+      "imgSrc": playlist.image_url,
       "description": playlist.description
     }
   }
@@ -285,6 +309,13 @@ function App() {
     })      
   }
 
+  const getEncryptedToken = (token) => {
+    let date = new Date();
+    let utcTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
+    let stringToEncrypt = `${token}===${utcTime}`
+    return btoa(stringToEncrypt)
+  }
+
   return (
     <div className="App">
       <div className="app-content">
@@ -306,7 +337,7 @@ function App() {
       <Player currentlyPlayingDetails={currentlyPlayingDetails} songSecondsPassed={songSecondsPassed} songTotalSeconds={songTotalSeconds} isPlaying={isPlaying} togglePlay={togglePlay} onPlayerBarClick={onPlayerBarClick} volume={volume} onVolumeBarClick={onVolumeBarClick}/>
       
       <ReactSound
-      url={audioUrl}
+      url={`${audioUrl}?access=${encryptedToken}`}
       playStatus={isPlaying ? ReactSound.status.PLAYING : ReactSound.status.PAUSED}
       position={songSecondsPassed*1000 /* in milliseconds */}
       volume={volume*100}

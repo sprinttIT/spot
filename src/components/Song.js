@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 
-const Song = ({liked, title, artist, album, releaseDate, song, playlist, onSongPlay, onLikeClicked, isPlaying, currentlyPlayingSong}) => {
+const Song = ({liked, title, artist, album, releaseDate, song, playlist, onSongPlay, onLikeClicked, isPlaying, currentlyPlayingSong, songs}) => {
     
     return (
         <tr>
