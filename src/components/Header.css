@@ -5,7 +5,8 @@
     background-size: cover;
     background-position: top 20% left 0px;
     color: white;
-    height: 16%;
+    height: 130px;
+    min-height: 18%;
     padding-left: 10%;
     padding-right: 10%;
     position: relative;

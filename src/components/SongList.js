@@ -14,7 +14,7 @@ const SongList = ({songs, playlist, onSongPlay, onLikeClicked, isPlaying, curren
                 <th>RELEASE DATE</th>
             </tr>
             {songs.map((song) => (
-                <Song key={song.id} liked={song.liked} title={song.title} artist={song.artist} album={song.album} releaseDate={song.releaseDate} song={song} playlist={playlist} onSongPlay={onSongPlay} onLikeClicked={onLikeClicked} isPlaying={isPlaying} currentlyPlayingSong={currentlyPlayingSong}/>
+                <Song key={song.id} liked={song.liked} title={song.title} artist={song.artist} album={song.album} releaseDate={song.releaseDate} song={song} playlist={playlist} onSongPlay={onSongPlay} onLikeClicked={onLikeClicked} isPlaying={isPlaying} currentlyPlayingSong={currentlyPlayingSong} songs={songs}/>
             ))}               
         </table>
     )

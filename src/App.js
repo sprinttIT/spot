@@ -16,15 +16,19 @@ import GenrePlaylistsPage from './components/pages/GenrePlaylistsPage';
 
 let TOKEN = '4d173c59-f266-4748-b57e-783b6413b6c7'
 
+
+
 function App() {
+
+  
 
   const axiosOptions = {
     headers: {'user-access-token': TOKEN}
   };
   
-  // const baseUrl = "http://3.140.142.196/spotify"
+  // const baseUrl = "https://3.140.142.196:5000/spotify"
   const baseUrl = "https://api.sprintt.co/spotify"
-  // const baseUrl = "https://localhost:5000/spotify"
+  // const baseUrl = "http://localhost:5000/spotify"
   const [selectedNavItem, setSelectedNavItem] = useState("home")
   const [currentPage, setCurrentPage] = useState("home")
   const [featuredPlaylists, setFeaturedPlaylists] = useState([])
@@ -53,7 +57,7 @@ function App() {
   const [isPlaying,setIsPlaying] = useState(false)
   const [encryptedToken,setEncryptedToken] = useState("")
   const [songSecondsPassed, setSongSecondsPassed] = useState(0)
-  const [songTotalSeconds, setSongTotalSeconds] = useState(105)
+  const [songTotalSeconds, setSongTotalSeconds] = useState(0)
 
   const [volume, setVolume] = useState(0.7)
 
@@ -86,12 +90,13 @@ function App() {
       "song": song.title,
       "artist": song.artist,
       "playlistImageSrc": playlist.imgSrc,
-      "totalTime": "0:00",
+      "totalTime": song.durationInSeconds,
       "timePassed": "0:00",
       "percentage": 0,
       "playlist": playlist,
       "playlistSongs": playlistSongs
     })
+    setSongTotalSeconds(song.durationInSeconds)
     if(currentlyPlayingDetails.song != song.title){
       setPlayingSong(playlist,song)
       updateRecentlyPlayed(playlist,song)
@@ -167,7 +172,8 @@ function App() {
       "artist": track.artists_names,
       "album": track.album_name,
       "releaseDate": track.release_date,
-      "liked": track.is_liked == 1
+      "liked": track.is_liked == 1,
+      "durationInSeconds": Math.floor(track.duration / 1000)
     }
   }
 
