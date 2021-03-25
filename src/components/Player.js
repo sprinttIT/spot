@@ -4,7 +4,7 @@ import PlayerBar from './PlayerBar';
 import VolumeBar from './VolumeBar';
 
 
-const Player = ({currentlyPlayingDetails, songSecondsPassed, songTotalSeconds, isPlaying, togglePlay, onPlayerBarClick, volume, onVolumeBarClick}) => {
+const Player = ({currentlyPlayingDetails, songSecondsPassed, songTotalSeconds, isPlaying, togglePlay, onPlayerBarClick, volume, onVolumeBarClick, onPrevClick, onNextClick}) => {
     return (
         <div className="player">
             <div className="player-left-part">
@@ -16,13 +16,13 @@ const Player = ({currentlyPlayingDetails, songSecondsPassed, songTotalSeconds, i
             </div>
             <div className="player-center-part">
                 <div className="player-controls">
-                    <button>
+                    <button onClick={() => onPrevClick()}>
                         <img src="/controller_icons/bar_prev.png" />
                     </button>
                     <button onClick={() => togglePlay()}>
                         <img src={isPlaying ? "/controller_icons/bar_pause.png" : "/controller_icons/bar_play.png"}/>
                     </button>
-                    <button>
+                    <button onClick={() => onNextClick()}>
                         <img src="/controller_icons/bar_next.png" />
                     </button>
                 </div>

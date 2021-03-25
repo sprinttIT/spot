@@ -7,7 +7,7 @@ const Song = ({liked, title, artist, album, releaseDate, song, playlist, onSongP
     return (
         <tr>
             <td className="play-pause-button">
-                <button onClick={()=> {onSongPlay(playlist, song)}}> 
+                <button onClick={()=> {onSongPlay(playlist, song, songs)}}> 
                     <img src={(isPlaying && (currentlyPlayingSong == title)) ? "/pause_line_icon.png" : "/play_line_icon.png"} />
                 </button>
             </td>

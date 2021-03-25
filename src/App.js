@@ -148,21 +148,49 @@ function App() {
 
   }
 
-  const moveSong = (direction) => {
+  const onPrevClick = () => {
+    moveToNextOrPrevSong(false)
+  }
+
+  const onNextClick = () => {
+    moveToNextOrPrevSong(true)
+  }
+
+  const moveToNextOrPrevSong = (isNext) => {
     let i;
-    for (i = 0; i < songList.length; i++) {
-      if(songList[i].id === currentlyPlayingDetails.songId){
-        if(direction == "next"){
-          if(i+1 < songList.length){
-            let song = songList.filter((song) => song.id === currentlyPlayingDetails.songId)
-            onSongPlay(currentlyPlayingDetails.playlist, song)
-          }
-      
+    let songs = currentlyPlayingDetails['playlistSongs']
+    for (i = 0; i < songs.length; i++) {
+      if(songs[i].id === currentlyPlayingDetails.songId){
+        let nextSongIndex
+        if(isNext){
+          nextSongIndex = getNextSongIndex(songs, i)
         }else{
-    
+          nextSongIndex = getPrevSongIndex(songs, i)
         }
+        let song = songs.filter((song) => song.id === songs[nextSongIndex].id)[0]
+        onSongPlay(currentlyPlayingDetails.playlist, song, songs)
       }
+    }  
+  }
+
+  const getNextSongIndex = (songs, currentSongIndex) => {
+    let nextSongIndex
+    if(currentSongIndex+1 < songs.length){
+      nextSongIndex = currentSongIndex+1
+    }else{
+      nextSongIndex = 0
     }
+    return nextSongIndex
+  }
+
+  const getPrevSongIndex = (songs, currentSongIndex) => {
+    let nextSongIndex
+    if(currentSongIndex > 0){
+      nextSongIndex = currentSongIndex-1
+    }else{
+      nextSongIndex = songs.length-1
+    }
+    return nextSongIndex
   }
 
   const formatTrack = (track) => {
@@ -340,7 +368,7 @@ function App() {
         <SongListPage playlist={selectedPlaylist} songs={songList} onSongPlay={onSongPlay} onLikeClicked={onLikeClicked} isPlaying={isPlaying} currentlyPlayingSong={currentlyPlayingDetails.song} duration={selectedPlaylistDuration}/>
         : ""}
       </div>
-      <Player currentlyPlayingDetails={currentlyPlayingDetails} songSecondsPassed={songSecondsPassed} songTotalSeconds={songTotalSeconds} isPlaying={isPlaying} togglePlay={togglePlay} onPlayerBarClick={onPlayerBarClick} volume={volume} onVolumeBarClick={onVolumeBarClick}/>
+      <Player currentlyPlayingDetails={currentlyPlayingDetails} songSecondsPassed={songSecondsPassed} songTotalSeconds={songTotalSeconds} isPlaying={isPlaying} togglePlay={togglePlay} onPlayerBarClick={onPlayerBarClick} volume={volume} onVolumeBarClick={onVolumeBarClick} onPrevClick={onPrevClick} onNextClick={onNextClick} />
       
       <ReactSound
       url={`${audioUrl}?access=${encryptedToken}`}
